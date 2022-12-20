@@ -1,117 +1,140 @@
-const menuEmail = document.querySelector('.navbar-email');
-const menuHamIcon = document.querySelector('.menu');
-const menuCarritoIcon = document.querySelector('.navbar-shopping-cart');
-const productDetailCloseIcon = document.querySelector('.product-detail-close')
-const desktopMenu = document.querySelector('.desktop-menu');
-const mobileMenu = document.querySelector('.mobile-menu');
-const shoppingCartContainer = document.querySelector('#shoppingCartContainer');
-const productDetailContainer = document.querySelector('#productDetail');
-const cardsContainer = document.querySelector('.cards-container');
+const menuEmail = document.querySelector(".navbar-email");
+const menuHamIcon = document.querySelector(".menu");
+const menuCarritoIcon = document.querySelector(".navbar-shopping-cart");
+const productDetailCloseIcon = document.querySelector(".product-detail-close");
+const desktopMenu = document.querySelector(".desktop-menu");
+const mobileMenu = document.querySelector(".mobile-menu");
+const shoppingCartContainer = document.querySelector("#shoppingCartContainer");
+const productDetailContainer = document.querySelector("#productDetail");
+const cardsContainer = document.querySelector(".cards-container");
 
-menuEmail.addEventListener('click', toggleDesktopMenu);
-menuHamIcon.addEventListener('click', toggleMobileMenu);
-menuCarritoIcon.addEventListener('click', toggleCarritoAside);
-productDetailCloseIcon.addEventListener('click', closeProductDetailAside);
+menuEmail.addEventListener("click", toggleDesktopMenu);
+menuHamIcon.addEventListener("click", toggleMobileMenu);
+menuCarritoIcon.addEventListener("click", toggleCarritoAside);
+productDetailCloseIcon.addEventListener("click", closeProductDetailAside);
 
 function toggleDesktopMenu() {
-  const isAsideClosed = shoppingCartContainer.classList.contains('inactive');
+  const isAsideClosed = shoppingCartContainer.classList.contains("inactive");
 
   if (!isAsideClosed) {
-    shoppingCartContainer.classList.add('inactive');
+    shoppingCartContainer.classList.add("inactive");
   }
-  
-  desktopMenu.classList.toggle('inactive');
+
+  desktopMenu.classList.toggle("inactive");
+  console.log(toggleDesktopMenu);
 }
 
 function toggleMobileMenu() {
-  const isAsideClosed = shoppingCartContainer.classList.contains('inactive');
+  const isAsideClosed = shoppingCartContainer.classList.contains("inactive");
 
   if (!isAsideClosed) {
-    shoppingCartContainer.classList.add('inactive'); 
+    shoppingCartContainer.classList.add("inactive");
   }
 
   closeProductDetailAside();
-  
-  mobileMenu.classList.toggle('inactive');
+
+  mobileMenu.classList.toggle("inactive");
 }
 
 function toggleCarritoAside() {
-  const isMobileMenuClosed = mobileMenu.classList.contains('inactive');
-  
+  const isMobileMenuClosed = mobileMenu.classList.contains("inactive");
+
   if (!isMobileMenuClosed) {
-    mobileMenu.classList.add('inactive');
+    mobileMenu.classList.add("inactive");
   }
 
-  const isProductDetailClosed = productDetailContainer.classList.contains('inactive');
-  
+  const isProductDetailClosed =
+    productDetailContainer.classList.contains("inactive");
+
   if (!isProductDetailClosed) {
-    productDetailContainer.classList.add('inactive'); 
+    productDetailContainer.classList.add("inactive");
   }
-  
-  shoppingCartContainer.classList.toggle('inactive');
+
+  shoppingCartContainer.classList.toggle("inactive");
 }
 
 function openProductDetailAside() {
-  shoppingCartContainer.classList.add('inactive');
-  productDetailContainer.classList.remove('inactive');
+  shoppingCartContainer.classList.add("inactive");
+  productDetailContainer.classList.remove("inactive");
 }
 
 function closeProductDetailAside() {
-  productDetailContainer.classList.add('inactive');
+  productDetailContainer.classList.add("inactive");
 }
 
 const productList = [];
 productList.push({
-  name: 'Bike',
+  name: "Alexa",
   price: 120,
-  image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+  image:
+    "https://img.asmedia.epimg.net/resizer/fkd0_4GidgxpkY5vaVe35-jpGy4=/360x0/cloudfront-eu-central-1.images.arcpublishing.com/diarioas/7GIS5SWC5FLIZCHYHS7IS5DUWI.jpg",
 });
 productList.push({
-  name: 'Pantalla',
+  name: "Pantalla",
   price: 220,
-  image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+  image:
+    "https://www.techhive.com/wp-content/uploads/2022/01/amazon-echo-family-100819672-orig.jpg?quality=50&strip=all&w=1024",
 });
 productList.push({
-  name: 'Compu',
+  name: "Alexas",
   price: 620,
-  image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+  image:
+    "http://voiceincanada.ca/wp-content/uploads/2017/12/Echo-family-square.jpg",
+});
+productList.push({
+  name: "Alexa",
+  price: 120,
+  image:
+    "https://img.asmedia.epimg.net/resizer/fkd0_4GidgxpkY5vaVe35-jpGy4=/360x0/cloudfront-eu-central-1.images.arcpublishing.com/diarioas/7GIS5SWC5FLIZCHYHS7IS5DUWI.jpg",
+});
+productList.push({
+  name: "Pantalla",
+  price: 220,
+  image:
+    "https://www.techhive.com/wp-content/uploads/2022/01/amazon-echo-family-100819672-orig.jpg?quality=50&strip=all&w=1024",
+});
+productList.push({
+  name: "Alexas",
+  price: 620,
+  image:
+    "http://voiceincanada.ca/wp-content/uploads/2017/12/Echo-family-square.jpg",
 });
 
 function renderProducts(arr) {
   for (product of arr) {
-    const productCard = document.createElement('div');
-    productCard.classList.add('product-card');
-  
+    const productCard = document.createElement("div");
+    productCard.classList.add("product-card");
+
     // product= {name, price, image} -> product.image
-    const productImg = document.createElement('img');
-    productImg.setAttribute('src', product.image);
-    productImg.addEventListener('click', openProductDetailAside);
-  
-    const productInfo = document.createElement('div');
-    productInfo.classList.add('product-info');
-  
-    const productInfoDiv = document.createElement('div');
-  
-    const productPrice = document.createElement('p');
-    productPrice.innerText = '$' + product.price;
-    const productName = document.createElement('p');
+    const productImg = document.createElement("img");
+    productImg.setAttribute("src", product.image);
+    productImg.addEventListener("click", openProductDetailAside);
+
+    const productInfo = document.createElement("div");
+    productInfo.classList.add("product-info");
+
+    const productInfoDiv = document.createElement("div");
+
+    const productPrice = document.createElement("p");
+    productPrice.innerText = "$" + product.price;
+    const productName = document.createElement("p");
     productName.innerText = product.name;
-  
+
     productInfoDiv.appendChild(productPrice);
     productInfoDiv.appendChild(productName);
-  
-    const productInfoFigure = document.createElement('figure');
-    const productImgCart = document.createElement('img');
-    productImgCart.setAttribute('src', './icons/bt_add_to_cart.svg');
-  
+
+    const productInfoFigure = document.createElement("figure");
+    const productImgCart = document.createElement("img");
+    productImgCart.setAttribute("src", "./icons/bt_add_to_cart.svg");
+
     productInfoFigure.appendChild(productImgCart);
-  
+
     productInfo.appendChild(productInfoDiv);
     productInfo.appendChild(productInfoFigure);
-  
+
     productCard.appendChild(productImg);
     productCard.appendChild(productInfo);
-  
+
     cardsContainer.appendChild(productCard);
   }
 }
