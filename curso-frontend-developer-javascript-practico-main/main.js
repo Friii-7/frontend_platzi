@@ -21,7 +21,6 @@ function toggleDesktopMenu() {
   }
 
   desktopMenu.classList.toggle("inactive");
-  console.log(toggleDesktopMenu);
 }
 
 function toggleMobileMenu() {
